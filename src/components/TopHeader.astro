@@ -1,0 +1,147 @@
+<div class="top_header">
+  <div class="container">
+    <div class="pull-left">
+      <div class="menu_top_header">
+        <span
+          ><a href="http://www.universita.corsica" class="hidden_md"
+            >Università di corsica</a
+          ><span class="hidden_md"
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+          ><label for="nosportails_menu" class="nosportails"
+            >Nos Portails &nbsp;&nbsp;:</label
+          ></span
+        >
+        <input type="checkbox" id="nosportails_menu" />
+        <ul class="animated slideInDown">
+          <span class="vitrinemobile">
+            <li>
+              <a href="https://www.universita.corsica">Site institutionnel</a>
+            </li></span
+          >
+          <li><a href="https://studia.universita.corsica">Étudiants</a></li>
+          <li>
+            <a href="https://portailweb.universita.corsica">Personnels</a>
+          </li>
+          <li><a href="https://ricerca.universita.corsica">Recherche</a></li>
+          <li><a href="https://pro.universita.corsica">Partenaires pro</a></li>
+          <li><a href="https://fundazione.universita.corsica">Fondation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pull-right">
+      <div class="pull-left">
+        <!--<a href="#" class="btn_search" id="btn_search"><i class="fa fa-search fa-1x" title="Recherche"></i></a>
+                        &nbsp;-->
+      </div>
+      <div class="menu_connexion_menu">
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cours.universita.corsica/outils/notifications/styles.css"
+          media="screen"
+        />
+
+        <a class="dropdown" href="#" title="Notifications"
+          ><span class="visually-hidden">Notifications</span>
+        </a><a id="notifications" title="Notifications" class="dropbtn"
+          ><i
+            class="fal fa-bell"
+            style="font-size: 15px; cursor: pointer; left: 18px; position: relative;"
+          ></i>
+          <i
+            style="position: relative; left: 8px; bottom: 8px; color:#dc3545; font-size:16px"
+            class="fas fa-circle"
+          >
+            <span
+              style="position: relative;cursor:pointer; left: -16.3px; color: white;font-size:9px; bottom: 2px; font-family:Ubuntu"
+              >712</span
+            >
+          </i>
+        </a>
+
+        <span
+          ><label for="connexion_menu" class="connexion"
+            >|&nbsp;&nbsp;&nbsp;MEHDI&nbsp;&nbsp;<i
+              class="fa fa-user fa-1x"
+              style="color:#00d40a"></i></label
+          ></span
+        >
+        <input type="checkbox" id="connexion_menu" />
+        <ul class="animated slideInDown connexion_visible">
+          <li>
+            <a href="https://cours.universita.corsica/index.php"
+              >Tous mes cours&nbsp;&nbsp;<i class="fa fa-cubes fa-1x"></i></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://applisweb.universita.corsica/portail/tous_mes_outils/settings.php?id_site=0&acces=portail&profil=admin"
+              >Mon compte&nbsp;&nbsp;<i class="fal fa-cog fa-1x"></i></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://cours.universita.corsica/outils/auth/logout.php?username=bqaaa7xj&id_site=0"
+              >Se déconnecter&nbsp;&nbsp;<i class="fa fa-sign-out fa-1x"></i></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  $(document).ready(function (event) {
+    $("#notifications").click(function (e) {
+      e.stopPropagation();
+      $(".dropdown-content").toggleClass("showNotification");
+    });
+
+    $(document).click(function () {
+      $(".dropdown-content").removeClass("showNotification");
+    });
+
+    $(".dropdown-content").click(function (e) {
+      e.stopPropagation();
+    });
+
+    $("a#notificationAffiche").click(function () {
+      var id_notif = $(this).attr("id_notif");
+      var lienNotification = $(this).attr("lienNotification");
+
+      $.ajax({
+        method: "GET",
+        url: "/outils/notifications/lecture_notification.php",
+        dataType: "html",
+        data: {
+          id: id_notif,
+        },
+        success: function (code_html, statut) {
+          document.location.href = lienNotification || "";
+        },
+      });
+    });
+
+    $("span.badgeLu_inverser").click(function () {
+      var a = $(this);
+      $.ajax({
+        method: "GET",
+        url: "/outils/notifications/lecture_notification.php",
+        dataType: "html",
+        data: {
+          username: "bqaaa7xj",
+        },
+        success: function (code_html, statut) {
+          a.remove();
+          $("a[id=notificationAffiche]").remove();
+          $(".ligne_notif").remove();
+          $(".badge").remove();
+          $(".dropdown-content").append(
+            "<a id='notificationAffiche' style='text-align: center;'> <span style='text-align: center;'> Aucune notification pour le moment.</span><br> </a>"
+          );
+        },
+      });
+    });
+  });
+</script>

@@ -1,21 +1,21 @@
 @font-face {
   font-family: "merlo";
-  src: url("../fonts/merlo_round_bold-webfont.woff2") format("woff2"),
-    url("../fonts/merlo_round_bold-webfont.woff") format("woff");
+  src: url("../assets/fonts/merlo_round_bold-webfont.woff2") format("woff2"),
+    url("../assets/fonts/merlo_round_bold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "merlo_regul";
-  src: url("../fonts/merlo_round_regular-webfont.woff2") format("woff2"),
-    url("../fonts/merlo_round_regular-webfont.woff") format("woff");
+  src: url("../assets/fonts/merlo_round_regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/merlo_round_regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "merlo_med";
-  src: url("../fonts/merlo_round_medium-webfont.woff2") format("woff2"),
-    url("../fonts/merlo_round_medium-webfont.woff") format("woff");
+  src: url("../assets/fonts/merlo_round_medium-webfont.woff2") format("woff2"),
+    url("../assets/fonts/merlo_round_medium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -1177,7 +1177,7 @@ input {
   right: 0;
   bottom: 0;
   width: 20px;
-  background: url("../images/select.png") no-repeat 0% 50%;
+  background: url("../assets/images/select.png") no-repeat 0% 50%;
 }
 
 /* ----------------------------- */
@@ -2422,53 +2422,60 @@ header.fixed .navigation ul.niv2 {
   transition: all 0.3s ease-in-out !important;
 }
 .aside_social a.facebook {
-  background: url(../images/social/facebook-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/facebook-inverse.png) top left
+    no-repeat;
 }
 .aside_social a.twitter {
-  background: url(../images/social/twitter-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/twitter-inverse.png) top left
+    no-repeat;
 }
 .aside_social a.instagram {
-  background: url(../images/social/instagram-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/instagram-inverse.png) top left
+    no-repeat;
 }
 .aside_social a.france {
-  background: url(../images/social/france-culture-inverse.png) top left
+  background: url(../assets/images/social/france-culture-inverse.png) top left
     no-repeat;
 }
 .aside_social a.youtube {
-  background: url(../images/social/youtube-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/youtube-inverse.png) top left
+    no-repeat;
 }
 .aside_social a.mobile {
-  background: url(../images/social/mobile-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/mobile-inverse.png) top left no-repeat;
 }
 .aside_social a.rss {
-  background: url(../images/social/rss-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/rss-inverse.png) top left no-repeat;
 }
 .aside_social a.linkedin {
-  background: url(../images/social/linkedin-inverse.png) top left no-repeat;
+  background: url(../assets/images/social/linkedin-inverse.png) top left
+    no-repeat;
 }
 .aside_social a.facebook:hover {
-  background: url(../images/social/facebook-hover.png) top left no-repeat;
+  background: url(../assets/images/social/facebook-hover.png) top left no-repeat;
 }
 .aside_social a.twitter:hover {
-  background: url(../images/social/twitter-hover.png) top left no-repeat;
+  background: url(../assets/images/social/twitter-hover.png) top left no-repeat;
 }
 .aside_social a.instagram:hover {
-  background: url(../images/social/instagram-hover.png) top left no-repeat;
+  background: url(../assets/images/social/instagram-hover.png) top left
+    no-repeat;
 }
 .aside_social a.france:hover {
-  background: url(../images/social/france-culture-hover.png) top left no-repeat;
+  background: url(../assets/images/social/france-culture-hover.png) top left
+    no-repeat;
 }
 .aside_social a.youtube:hover {
-  background: url(../images/social/youtube-hover.png) top left no-repeat;
+  background: url(../assets/images/social/youtube-hover.png) top left no-repeat;
 }
 .aside_social a.mobile:hover {
-  background: url(../images/social/mobile-hover.png) top left no-repeat;
+  background: url(../assets/images/social/mobile-hover.png) top left no-repeat;
 }
 .aside_social a.rss:hover {
-  background: url(../images/social/rss-hover.png) top left no-repeat;
+  background: url(../assets/images/social/rss-hover.png) top left no-repeat;
 }
 .aside_social a.linkedin:hover {
-  background: url(../images/social/linkedin-hover.png) top left no-repeat;
+  background: url(../assets/images/social/linkedin-hover.png) top left no-repeat;
 }
 
 .aside .fiche_technique {
@@ -2540,52 +2547,54 @@ footer .top_footer .title {
   transition: all 0.3s ease-in-out !important;
 }
 .social_footer a.facebook {
-  background: url(../images/social/facebook.png) top left no-repeat;
+  background: url(../assets/images/social/facebook.png) top left no-repeat;
 }
 .social_footer a.twitter {
-  background: url(../images/social/twitter.png) top left no-repeat;
+  background: url(../assets/images/social/twitter.png) top left no-repeat;
 }
 .social_footer a.instagram {
-  background: url(../images/social/instagram.png) top left no-repeat;
+  background: url(../assets/images/social/instagram.png) top left no-repeat;
 }
 .social_footer a.france {
-  background: url(../images/social/france-culture.png) top left no-repeat;
+  background: url(../assets/images/social/france-culture.png) top left no-repeat;
 }
 .social_footer a.youtube {
-  background: url(../images/social/youtube.png) top left no-repeat;
+  background: url(../assets/images/social/youtube.png) top left no-repeat;
 }
 .social_footer a.mobile {
-  background: url(../images/social/mobile.png) top left no-repeat;
+  background: url(../assets/images/social/mobile.png) top left no-repeat;
 }
 .social_footer a.rss {
-  background: url(../images/social/rss.png) top left no-repeat;
+  background: url(../assets/images/social/rss.png) top left no-repeat;
 }
 .social_footer a.linkedin {
-  background: url(../images/social/linkedin.png) top left no-repeat;
+  background: url(../assets/images/social/linkedin.png) top left no-repeat;
 }
 .social_footer a.facebook:hover {
-  background: url(../images/social/facebook-hover.png) top left no-repeat;
+  background: url(../assets/images/social/facebook-hover.png) top left no-repeat;
 }
 .social_footer a.twitter:hover {
-  background: url(../images/social/twitter-hover.png) top left no-repeat;
+  background: url(../assets/images/social/twitter-hover.png) top left no-repeat;
 }
 .social_footer a.instagram:hover {
-  background: url(../images/social/instagram-hover.png) top left no-repeat;
+  background: url(../assets/images/social/instagram-hover.png) top left
+    no-repeat;
 }
 .social_footer a.france:hover {
-  background: url(../images/social/france-culture-hover.png) top left no-repeat;
+  background: url(../assets/images/social/france-culture-hover.png) top left
+    no-repeat;
 }
 .social_footer a.youtube:hover {
-  background: url(../images/social/youtube-hover.png) top left no-repeat;
+  background: url(../assets/images/social/youtube-hover.png) top left no-repeat;
 }
 .social_footer a.mobile:hover {
-  background: url(../images/social/mobile-hover.png) top left no-repeat;
+  background: url(../assets/images/social/mobile-hover.png) top left no-repeat;
 }
 .social_footer a.rss:hover {
-  background: url(../images/social/rss-hover.png) top left no-repeat;
+  background: url(../assets/images/social/rss-hover.png) top left no-repeat;
 }
 .social_footer a.linkedin:hover {
-  background: url(../images/social/linkedin-hover.png) top left no-repeat;
+  background: url(../assets/images/social/linkedin-hover.png) top left no-repeat;
 }
 
 footer .top_footer ul {

@@ -1,11 +1,166 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BottomHeader from "../components/BottomHeader.astro";
+import TopHeader from "../components/TopHeader.astro";
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import Recherche from "../components/Recherche.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/fa.css";
+import "../styles/style.css";
+import IAChat from "../components/react/IAChat";
 ---
 
 <Layout>
-	<Welcome />
+  <div class="tw-min-h-screen tw-bg-white">
+    {/* Top Header */}
+    <header role="banner">
+      <TopHeader />
+      <BottomHeader />
+      <Navigation />
+    </header>
+    <Hero />
+
+    <div class="container_main_auto_cours" id="container_main_auto_cours">
+      <div class="container_main">
+        <Recherche />
+
+        {/* Chat Interface */}
+        <div
+          class="touslessites_section recherche_cours_etu"
+          id="recherche_cours"
+          style={{ backgroundColor: "white" }}
+        >
+          <p id="name_section">Assistant IA</p>
+          <div
+            style={{
+              border: "2px solid #ff5522",
+              borderRadius: "8px",
+              padding: "16px",
+              margin: "16px",
+            }}
+          >
+            {/* Chat Messages Area */}
+            <div
+              style={{
+                height: "300px",
+                overflowY: "auto",
+                marginBottom: "16px",
+                padding: "12px",
+                backgroundColor: "#f4f4f4",
+                borderRadius: "4px",
+              }}
+            >
+              {/* Initial message */}
+              <div style={{ marginBottom: "12px" }}>
+                <div
+                  style={{
+                    backgroundColor: "#ff5522",
+                    color: "white",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    display: "inline-block",
+                    maxWidth: "80%",
+                  }}
+                >
+                  Salute! Comment puis-je vous aider aujourd&apos;hui?
+                </div>
+              </div>
+
+              {/* Student message */}
+              <div style={{ marginBottom: "12px", textAlign: "right" }}>
+                <div
+                  style={{
+                    backgroundColor: "#e1e1e1",
+                    color: "#333",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    display: "inline-block",
+                    maxWidth: "80%",
+                    textAlign: "left",
+                  }}
+                >
+                  Peux-tu me faire un récapitulatif de mes cours de design et me
+                  dire s&apos;il y a des nouveautés ?
+                </div>
+              </div>
+
+              {/* Assistant response */}
+              <div style={{ marginBottom: "12px" }}>
+                <div
+                  style={{
+                    backgroundColor: "#ff5522",
+                    color: "white",
+                    padding: "8px 12px",
+                    borderRadius: "8px",
+                    display: "inline-block",
+                    maxWidth: "80%",
+                  }}
+                >
+                  Bien sûr ! Vous avez 9 cours de design actuellement. Je vois
+                  plusieurs notifications importantes :
+                  <br />
+                  <br />
+                  - Nouveau document dans le cours UI/UX Design (7 annonces récentes)
+                  - Le cours de Photographie Numérique a une nouvelle notification
+                  importante - Le cours Design Studio a 9 nouvelles annonces à consulter
+                  <br />
+                  <br />
+                  Le cours de Motion Design contient 20 documents, c&apos;est le
+                  plus fourni après le Design 3D qui en compte 22.
+                  <br />
+                  <br />
+                  Souhaitez-vous des détails sur un cours en particulier ?
+                </div>
+              </div>
+            </div>
+
+            {/* Input Area */}
+            <div style={{ display: "flex", gap: "8px" }}>
+              <input
+                type="text"
+                placeholder="Posez votre question..."
+                style={{
+                  flex: 1,
+                  padding: "8px 12px",
+                  borderRadius: "4px",
+                  border: "1px solid #ddd",
+                  fontSize: "14px",
+                }}
+              />
+              <button
+                style={{
+                  backgroundColor: "#ff5522",
+                  color: "white",
+                  border: "none",
+                  padding: "8px 16px",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Original Course Section */}
+        <div
+          class="touslessites_section recherche_cours_etu"
+          id="recherche_cours"
+          style={{ backgroundColor: "white" }}
+        >
+          <p id="name_section">Mon espace étudiant (26 cours)</p>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            <!-- {COURSES_DATA.map((course) => <CourseCard course={course} />)} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

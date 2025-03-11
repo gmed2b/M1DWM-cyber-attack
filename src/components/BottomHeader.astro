@@ -1,0 +1,37 @@
+<div class="bottom_header">
+  <div class="container">
+    <a href="https://cours.universita.corsica/" class="logo"
+      ><img
+        src="https://cours.universita.corsica/template/template_back_office/images/logo.png"
+        alt="logo"
+      /></a
+    >
+
+    <div class="baseline">
+      Cours en ligne <span
+        style="font-size: 10px;padding:5px;background-color:#000;color:#fff"
+        title="Heure"
+        id="horloge">18:26:09</span
+      > | <span style="font-size: 16px;">Università di Corsica</span><input
+        type="hidden"
+        id="timestamp_hidden"
+        name="timestamp_hidden"
+        value="1741713969"
+      />
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+    const timeString = `${hours}:${minutes}:${seconds}`;
+    document.getElementById("horloge")!.textContent = timeString;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock(); // initial call to display clock immediately
+</script>
