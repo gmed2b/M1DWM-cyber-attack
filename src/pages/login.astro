@@ -1,0 +1,231 @@
+---
+import TopHeader from "../components/login/TopHeader.astro";
+import Header from "../components/login/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/fa.css";
+import "../styles/style.css";
+---
+
+<Layout>
+  <div>
+    <header role="banner" class="tw-relative">
+      <TopHeader />
+      <Header />
+    </header>
+
+    <main id="main-content" class="container-lg py-4">
+      <div id="content" class="justify-content-center">
+        <div
+          class="justify-content-center flex-column mdc-card mdc-card-content card flex-grow-1"
+          style="padding: 20px"
+        >
+          <div id="etu_pers_vacataires">
+            <span style="color: #ff5522;">
+              &gt; Vous êtes étudiant, personnel, vacataire ou ALUMNI de
+              l'Università di Corsica</span
+            >
+          </div>
+          <div class="d-flex flex-column justify-content-between m-auto">
+            <div class="form-wrapper">
+              <form method="post" id="fm1" action="login">
+                <div id="login-form-controls">
+                  <section
+                    class="cas-field form-group my-3"
+                    id="usernameSection"
+                  >
+                    <label
+                      for="username"
+                      class="mdc-text-field mdc-text-field--outlined control-label w-100 mdc-text-field--invalid"
+                    >
+                      <span
+                        class="mdc-notched-outline mdc-notched-outline--upgraded"
+                      >
+                        <span class="mdc-notched-outline__leading"></span>
+                        <span class="mdc-notched-outline__notch" style="">
+                          <span
+                            class="mdc-floating-label mdc-floating-label--required"
+                            style="background-color: rgb(255, 255, 255);"
+                            ><span class="accesskey">I</span
+                            >dentifiant&nbsp;:</span
+                          >
+                        </span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                      </span>
+                      <input
+                        class="mdc-text-field__input form-control"
+                        id="username"
+                        size="25"
+                        type="text"
+                        accesskey="i"
+                        autocapitalize="none"
+                        spellcheck="false"
+                        autocomplete="username"
+                        required=""
+                        name="username"
+                        value=""
+                      /><div
+                        class="mdc-text-field-helper-line invalid-feedback"
+                      >
+                        <div
+                          class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                          aria-hidden="true"
+                        >
+                          <span id="usernameValidationMessage"
+                            >Vous devez entrer votre identifiant.</span
+                          >
+                        </div>
+                      </div>
+                    </label>
+                  </section>
+                  <section
+                    class="cas-field form-group my-3 mdc-input-group form-group"
+                    id="passwordSection"
+                  >
+                    <div
+                      class="mdc-input-group-field mdc-input-group-field-append"
+                    >
+                      <div class="d-flex caps-check">
+                        <label
+                          for="password"
+                          class="mdc-text-field caps-check mdc-text-field--outlined control-label mdc-text-field--with-trailing-icon w-100"
+                        >
+                          <span
+                            class="mdc-notched-outline mdc-notched-outline--upgraded"
+                          >
+                            <span class="mdc-notched-outline__leading"></span>
+                            <span class="mdc-notched-outline__notch">
+                              <!-- <span class="mdc-floating-label" th:utext="#{screen.welcome.label.password}">Password</span> -->
+                              <span
+                                class="mdc-floating-label mdc-floating-label--float-above mdc-floating-label--required"
+                                style="background-color: rgb(255, 255, 255);"
+                                ><span class="accesskey">M</span>ot de
+                                passe&nbsp;:</span
+                              >
+                            </span>
+                            <span class="mdc-notched-outline__trailing"></span>
+                          </span>
+                          <input
+                            class="mdc-text-field__input form-control pwd"
+                            type="password"
+                            id="password"
+                            size="25"
+                            required=""
+                            accesskey="m"
+                            autocomplete="off"
+                            name="password"
+                            value=""
+                          /><div
+                            class="mdc-text-field-helper-line invalid-feedback"
+                          >
+                            <div
+                              class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                              aria-hidden="true"
+                            >
+                              <span id="passwordValidationMessage"
+                                >Vous devez entrer votre mot de passe.</span
+                              >
+                            </div>
+                          </div>
+                        </label>
+                        <button
+                          class="reveal-password mdc-input-group-append bouton"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <i class="mdi mdi-eye reveal-password-icon fas fa-eye"
+                          ></i>
+                          <!-- <span class="visually-hidden">Toggle Password</span>--></button
+                        >
+                      </div>
+
+                      <div class="mdc-text-field-helper-line caps-warn">
+                        <div
+                          class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg text-danger"
+                        >
+                          <span>La touche Verr. Maj. est activée&nbsp;!</span>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <button
+                    class="bouton"
+                    name="submitBtn"
+                    accesskey="l"
+                    type="submit"
+                    value="Se connecter"
+                  >
+                    <span class="mdc-button__label">Se connecter</span>
+                  </button>
+                </div>
+              </form>
+
+              <span>
+                <div id="pmlinks" class="my-2">
+                  <div>
+                    <br /><span class="mdi mdi-account-question"></span>
+                    <span
+                      ><a
+                        href="https://activation.universita.corsica/guichet_activation_reset_compte-front.php?acces=ok&profil=&id_site=0&type=changement"
+                        >Mot de passe oublié&nbsp;?</a
+                      ></span
+                    >
+                    <a
+                      href="https://dsin.universita.corsica/plugins/faq/listing_faq-front.php?id_faq=5&acces=ok&id_art=4515&id_rub=0&id_site=47&id_menu=0&header_plugin=ok"
+                      target="_blank">Besoin d'aide ?</a
+                    >
+                  </div>
+                </div>
+              </span>
+            </div>
+
+            <span>
+              <div id="sidebar">
+                <div class="sidebar-content">
+                  <p>
+                    Pour des raisons de sécurité, veuillez vous <a href="logout"
+                      >déconnecter</a
+                    > et fermer votre navigateur lorsque vous avez fini d’accéder
+                    aux services authentifiés.
+                  </p>
+                </div>
+              </div>
+            </span>
+          </div>
+        </div>
+
+        <br /><div
+          class="justify-content-center flex-column mdc-card mdc-card-content card flex-grow-1"
+          style="padding: 20px"
+        >
+          <div id="nouvel_arrivant">
+            <span style="color: #ff5522;"
+              >&gt; Vous êtes nouvel arrivant à l'Università di Corsica, pour
+              activer votre compte</span
+            >&nbsp;&nbsp;&nbsp;<a
+              href="https://activation.universita.corsica/guichet_activation_reset_compte-front.php?acces=ok&profil=&id_site=0&type=activation"
+              class="bouton"
+              ><span class="mdc-button__label">cliquez ici</span></a
+            >
+          </div>
+        </div>
+        <br /><div
+          class="justify-content-center flex-column mdc-card mdc-card-content card flex-grow-1"
+          style="padding: 20px"
+        >
+          <div id="autres">
+            <span style="color: #ff5522;"
+              >&gt; Vous êtes extérieur, pour vous connecter</span
+            >&nbsp;&nbsp;&nbsp;<a
+              href="https://portailweb.universita.corsica/plugins/auth/auth_externe/auth_externe.php?id_cours=0&lang=fr&service=auth_externe&url_appli=https://cours.universita.corsica"
+              class="bouton"
+              ><span class="mdc-button__label">cliquez ici</span></a
+            >
+          </div>
+
+          <br />
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>
