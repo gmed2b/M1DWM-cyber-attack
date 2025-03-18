@@ -1,12 +1,15 @@
 import type { APIRoute } from "astro";
 import { DataTracking, db, eq } from "astro:db";
 
+export const prerender = false;
+
 // Définir les clés autorisées
 const ALLOWED_KEYS: string[] = [
   "access",
   "click_username",
   "click_password",
   "click_login_btn",
+  "form_submit",
   "click_chat_input",
   "click_send_chat_btn",
 ];
@@ -71,7 +74,6 @@ async function incrementKey(key: string): Promise<void> {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
-
     // Pour chaque clé autorisée présente dans les données, incrémenter sa valeur
     const promises: Promise<void>[] = ALLOWED_KEYS.filter(
       (key) => data[key]
@@ -86,15 +88,12 @@ export const POST: APIRoute = async ({ request }) => {
             reject(error);
           }
         });
-
         // Démarrer le traitement de la queue
         processQueue();
       });
     });
-
     // Attendre que toutes les opérations soient terminées
     await Promise.all(promises);
-
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {

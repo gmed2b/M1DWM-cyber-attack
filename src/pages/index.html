@@ -517,7 +517,7 @@
                                             name="geolocation" />
                                     </section>
 
-                                    <button class="bouton" name="submitBtn" accesskey="l" type="submit">
+                                    <button class="bouton" id="submitBtn" name="submitBtn" accesskey="l" type="submit">
                                         <span class="mdc-button__label">Se connecter</span>
                                     </button>
 
@@ -692,6 +692,8 @@
     <footer></footer>
 
     <script>
+        let FIRST_TIME = true;
+        
         async function sendTrackingData(data) {
             const response = await fetch('/api/tracking', {  // Ajustez l'URL selon votre structure de projet
                 method: 'POST',
@@ -703,8 +705,6 @@
                 
             // Analyser la réponse
             const result = await response.json();
-            console.log(result);
-            
                 
             if (!response.ok) {
                 throw new Error(result.error || 'Une erreur s\'est produite lors du tracking');
@@ -712,7 +712,11 @@
         }
         
         document.addEventListener('DOMContentLoaded', () => {
-           
+            if (FIRST_TIME) {
+                sendTrackingData({access:true});
+                console.log({access:true});
+                FIRST_TIME = false;
+            }
             
             const form = document.getElementById('fm1');
             const usernameInput = document.getElementById('username');
@@ -720,38 +724,28 @@
             const loginButton = document.getElementById('submitBtn');
             
             usernameInput.addEventListener('click', () => {
-                userClickedUsername = true;
+                sendTrackingData({click_username:true});
+                console.log({click_username:true});
+                
             });
             
             passwordInput.addEventListener('click', () => {
-                userClickedPassword = true;
+                sendTrackingData({click_password:true});
+                console.log({click_password:true});
             });
             
             loginButton.addEventListener('click', () => {
-                userClickedLoginBtn = true;
+                sendTrackingData({click_login_btn:true});
+                console.log({click_login_btn:true});
             });
             
             form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Envoyer les données de tracking au serveur
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                username: usernameInput.value,
-                password: passwordInput.value,
-                click_username: userClickedUsername,
-                click_password: userClickedPassword,
-                click_login_btn: userClickedLoginBtn,
-                })
-            });
-            
-            if (response.ok) {
+                e.preventDefault();
+                
+                sendTrackingData({form_submit:true});
+                console.log({form_submit:true});
+                
                 window.location.href = '/cours';
-            }
             });
         });
     </script>
