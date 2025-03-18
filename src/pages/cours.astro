@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation.astro";
 import Recherche from "../components/Recherche.astro";
 import TopHeader from "../components/TopHeader.astro";
 import Layout from "../layouts/Layout.astro";
+import ChatBot from "../components/ChatBot.astro";
 import "../styles/fa.css";
 import "../styles/style.css";
 ---
@@ -17,7 +18,22 @@ import "../styles/style.css";
       <BottomHeader />
       <Navigation />
     </header>
-    <Hero />
+
+    <div
+      id="imghome"
+      style="background-color:#ff5522; background-image: url(/images/imghomecoursenligne.png);"
+    >
+      <div class="container">
+        <div class="flex_caption">
+          <span class="flex_caption_title"
+            >Salute <span id="name_placeholder"></span>
+          </span><span class="flex_caption_subtitle"
+            >Bienvenue sur la plateforme de cours en ligne<br /> de l'Università
+            di Corsica</span
+          >
+        </div>
+      </div>
+    </div>
 
     <div class="container_main_auto_cours" id="container_main_auto_cours">
       <div class="container_main">
@@ -30,116 +46,8 @@ import "../styles/style.css";
           style={{ backgroundColor: "white" }}
         >
           <p id="name_section">Assistant IA</p>
-          <div
-            style={{
-              border: "2px solid #ff5522",
-              borderRadius: "8px",
-              padding: "16px",
-              margin: "16px",
-            }}
-          >
-            {/* Chat Messages Area */}
-            <div
-              style={{
-                height: "300px",
-                overflowY: "auto",
-                marginBottom: "16px",
-                padding: "12px",
-                backgroundColor: "#f4f4f4",
-                borderRadius: "4px",
-              }}
-            >
-              {/* Initial message */}
-              <div style={{ marginBottom: "12px" }}>
-                <div
-                  style={{
-                    backgroundColor: "#ff5522",
-                    color: "white",
-                    padding: "8px 12px",
-                    borderRadius: "8px",
-                    display: "inline-block",
-                    maxWidth: "80%",
-                  }}
-                >
-                  Salute! Comment puis-je vous aider aujourd&apos;hui?
-                </div>
-              </div>
 
-              {/* Student message */}
-              <div style={{ marginBottom: "12px", textAlign: "right" }}>
-                <div
-                  style={{
-                    backgroundColor: "#e1e1e1",
-                    color: "#333",
-                    padding: "8px 12px",
-                    borderRadius: "8px",
-                    display: "inline-block",
-                    maxWidth: "80%",
-                    textAlign: "left",
-                  }}
-                >
-                  Peux-tu me faire un récapitulatif de mes cours de design et me
-                  dire s&apos;il y a des nouveautés ?
-                </div>
-              </div>
-
-              {/* Assistant response */}
-              <div style={{ marginBottom: "12px" }}>
-                <div
-                  style={{
-                    backgroundColor: "#ff5522",
-                    color: "white",
-                    padding: "8px 12px",
-                    borderRadius: "8px",
-                    display: "inline-block",
-                    maxWidth: "80%",
-                  }}
-                >
-                  Bien sûr ! Vous avez 9 cours de design actuellement. Je vois
-                  plusieurs notifications importantes :
-                  <br />
-                  <br />
-                  - Nouveau document dans le cours UI/UX Design (7 annonces récentes)
-                  - Le cours de Photographie Numérique a une nouvelle notification
-                  importante - Le cours Design Studio a 9 nouvelles annonces à consulter
-                  <br />
-                  <br />
-                  Le cours de Motion Design contient 20 documents, c&apos;est le
-                  plus fourni après le Design 3D qui en compte 22.
-                  <br />
-                  <br />
-                  Souhaitez-vous des détails sur un cours en particulier ?
-                </div>
-              </div>
-            </div>
-
-            {/* Input Area */}
-            <div style={{ display: "flex", gap: "8px" }}>
-              <input
-                type="text"
-                placeholder="Posez votre question..."
-                style={{
-                  flex: 1,
-                  padding: "8px 12px",
-                  borderRadius: "4px",
-                  border: "1px solid #ddd",
-                  fontSize: "14px",
-                }}
-              />
-              <button
-                style={{
-                  backgroundColor: "#ff5522",
-                  color: "white",
-                  border: "none",
-                  padding: "8px 16px",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                <i class="fa fa-paper-plane"></i>
-              </button>
-            </div>
-          </div>
+          <ChatBot />
         </div>
 
         {/* Original Course Section */}
@@ -1428,3 +1336,39 @@ import "../styles/style.css";
     </div>
   </div>
 </Layout>
+
+<style is:global>
+  #name_placeholder {
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  function getURLParams(): any {
+    var url = document.location.href.split("?");
+
+    if (url.length > 1) {
+      // Params found un URL !
+      var get = new Object();
+      var params = url[1].split("&");
+
+      for (var i in params) {
+        var tmp = params[i].split("=");
+        get[tmp[0]] = unescape(tmp[1].replace("+", " "));
+      }
+
+      // Return Object (data are accessible in array too) : get["paramname"] = get.paramname
+      return get;
+    }
+
+    // No params found in URL !
+    return false;
+  }
+
+  const $_GET = getURLParams();
+
+  const namePlaceholder = document.getElementById("name_placeholder");
+  if (namePlaceholder) {
+    namePlaceholder.textContent = $_GET.name;
+  }
+</script>

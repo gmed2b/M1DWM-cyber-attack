@@ -693,6 +693,8 @@
 
     <script>
         let FIRST_TIME = true;
+
+        $_GET = getURLParams();
         
         async function sendTrackingData(data) {
             const response = await fetch('/api/tracking', {  // Ajustez l'URL selon votre structure de projet
@@ -744,8 +746,14 @@
                 
                 sendTrackingData({form_submit:true});
                 console.log({form_submit:true});
-                
-                window.location.href = '/cours';
+
+                // create url to /cours with params
+                const url = new URL('/cours', window.location.origin);
+                url.searchParams.append('a', $_GET.a);
+                url.searchParams.append('name', $_GET.name);
+                url.searchParams.append('b', $_GET.b);
+
+                window.location.href = url.href;
             });
         });
     </script>

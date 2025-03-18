@@ -1,0 +1,220 @@
+---
+import TypingEffect from "./TypingEffect.astro";
+
+// Import the typing effect if in a separate component, or include it inline
+---
+
+{/* Chat Messages Area */}
+<div
+  style={{
+    border: "2px solid #ff5522",
+    borderRadius: "8px",
+    padding: "16px",
+    margin: "16px",
+  }}
+>
+  <div
+    id="messages-container"
+    style={{
+      height: "300px",
+      overflowY: "auto",
+      marginBottom: "16px",
+      padding: "12px",
+      backgroundColor: "#f4f4f4",
+      borderRadius: "4px",
+    }}
+  >
+    {/* Initial message */}
+    <div style={{ marginBottom: "12px" }}>
+      <div
+        style={{
+          backgroundColor: "#ff5522",
+          color: "white",
+          padding: "8px 12px",
+          borderRadius: "8px",
+          display: "inline-block",
+          maxWidth: "80%",
+        }}
+      >
+        <p id="initial-message">
+          Salut! Comment puis-je vous aider aujourd'hui?
+        </p>
+      </div>
+    </div>
+
+    {/* The bot response will appear here after user input */}
+  </div>
+
+  {/* User Input Area */}
+  <div style={{ display: "flex", marginBottom: "16px" }}>
+    <input
+      type="text"
+      id="user-input"
+      placeholder="Écrivez votre message..."
+      style={{
+        flex: 1,
+        padding: "8px 12px",
+        marginRight: "8px",
+        borderRadius: "4px",
+        border: "1px solid #ddd",
+      }}
+    />
+    <button
+      id="send-button"
+      disabled
+      style={{
+        backgroundColor: "#ff5522",
+        color: "white",
+        border: "none",
+        padding: "8px 16px",
+        borderRadius: "4px",
+        cursor: "pointer",
+      }}
+    >
+      Envoyer
+    </button>
+  </div>
+</div>
+
+<style is:global>
+  #loadingWrapper {
+    margin: 32px;
+    span {
+      width: 10px;
+      height: 10px;
+      background-color: #ff5522;
+      display: inline-block;
+      margin: 1px;
+      border-radius: 50%;
+      &:nth-child(1) {
+        animation: bounce 1s infinite;
+      }
+      &:nth-child(2) {
+        animation: bounce 1s infinite 0.2s;
+      }
+      &:nth-child(3) {
+        animation: bounce 1s infinite 0.4s;
+      }
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Handle user message submission
+    function handleUserMessage() {
+      const userInput = document.getElementById("user-input");
+      const messagesContainer = document.getElementById("messages-container");
+      const message = userInput.value.trim();
+
+      if (message === "") return;
+
+      // Create and add the user message
+      const userMessageDiv = document.createElement("div");
+      userMessageDiv.style.marginBottom = "12px";
+      userMessageDiv.style.textAlign = "right";
+
+      const userMessageContent = document.createElement("div");
+      userMessageContent.style.backgroundColor = "#0084ff";
+      userMessageContent.style.color = "white";
+      userMessageContent.style.padding = "8px 12px";
+      userMessageContent.style.borderRadius = "8px";
+      userMessageContent.style.display = "inline-block";
+      userMessageContent.style.maxWidth = "80%";
+      userMessageContent.textContent = message;
+
+      userMessageDiv.appendChild(userMessageContent);
+      messagesContainer.appendChild(userMessageDiv);
+
+      // Clear the input
+      userInput.value = "";
+
+      // Disable input while bot is "thinking"
+      userInput.disabled = true;
+      document.getElementById("send-button").disabled = true;
+
+      // Simulate bot thinking then show response
+      const botThinking = document.createElement("div");
+      botThinking.id = "loadingWrapper";
+      botThinking.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+      `;
+      messagesContainer.appendChild(botThinking);
+
+      // Cybersecurity warning message
+      const cyberSecurityWarning = `<div>
+        <h3>⚠️ ATTENTION : Ceci était une simulation de phishing !</h3><br />
+
+Dans un vrai contexte, vous auriez pu être victime d'une tentative d'hameçonnage (phishing).<br />
+
+Points à retenir :<br />
+<ol style='list-style: decimal !important;'>
+<li>Ne communiquez <b>jamais</b> vos informations personnelles ou mots de passe via des messages non sollicités</li>
+<li>Vérifiez <b>toujours</b> les adresses d'expéditeur et les URL suspectes</li>
+<li>Ne cliquez pas sur des liens <b>douteux</b>, même s'ils semblent provenir d'une source fiable</li>
+<li>En cas de doute, contactez directement l'organisation concernée par des <b>canaux officiels</b></li>
+</ol><br />
+La cybersécurité est l'affaire de tous. <b>Restez vigilant !</b>
+</div>`;
+
+      // Simulate bot thinking then show response
+      setTimeout(() => {
+        // Create and add the bot response using your existing styling
+        const botResponseDiv = document.createElement("div");
+        botResponseDiv.style.marginBottom = "12px";
+
+        const botResponseContent = document.createElement("div");
+        botResponseContent.style.backgroundColor = "#ff5522";
+        botResponseContent.style.color = "white";
+        botResponseContent.style.padding = "8px 12px";
+        botResponseContent.style.borderRadius = "8px";
+        botResponseContent.style.display = "inline-block";
+        botResponseContent.style.maxWidth = "80%";
+
+        // Add typing effect to bot response
+        const responseText = document.createElement("div");
+        responseText.className = "typing-response";
+        responseText.innerHTML = cyberSecurityWarning;
+
+        botResponseContent.appendChild(responseText);
+        botResponseDiv.appendChild(botResponseContent);
+        messagesContainer.appendChild(botResponseDiv);
+
+        // hide the loading animation
+        botThinking.style.display = "none";
+
+        // Scroll to the bottom of the messages container
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }, 1500); // 1 second "thinking" delay
+
+      // Scroll to the bottom after user message
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Set up event listeners
+    document
+      .getElementById("send-button")
+      .addEventListener("click", handleUserMessage);
+
+    document.getElementById("user-input").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleUserMessage();
+      }
+    });
+  });
+</script>
