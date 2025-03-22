@@ -61,7 +61,8 @@
 
         <span
           ><label for="connexion_menu" class="connexion"
-            >|&nbsp;&nbsp;&nbsp;MEHDI&nbsp;&nbsp;<i
+            >|&nbsp;&nbsp;&nbsp;<span id="name_placeholder"
+            ></span>&nbsp;&nbsp;<i
               class="fa fa-user fa-1x"
               style="color:#00d40a"></i></label
           ></span
@@ -90,6 +91,36 @@
     </div>
   </div>
 </div>
+
+<script>
+  function getURLParams(): any {
+    var url = document.location.href.split("?");
+
+    if (url.length > 1) {
+      // Params found un URL !
+      var get = new Object();
+      var params = url[1].split("&");
+
+      for (var i in params) {
+        var tmp = params[i].split("=");
+        get[tmp[0]] = unescape(tmp[1].replace("+", " "));
+      }
+
+      // Return Object (data are accessible in array too) : get["paramname"] = get.paramname
+      return get;
+    }
+
+    // No params found in URL !
+    return false;
+  }
+
+  const $_GET = getURLParams();
+
+  const namePlaceholder = document.getElementById("name_placeholder");
+  if (namePlaceholder) {
+    namePlaceholder.textContent = $_GET.name || "";
+  }
+</script>
 
 <script is:inline>
   $(document).ready(function (event) {
