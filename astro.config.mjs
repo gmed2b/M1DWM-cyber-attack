@@ -8,6 +8,8 @@ import db from '@astrojs/db';
 
 import vercel from '@astrojs/vercel';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -15,5 +17,5 @@ export default defineConfig({
   },
 
   integrations: [react(), db()],
-  adapter: vercel()
+  adapter: netlify()
 });
