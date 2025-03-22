@@ -46,34 +46,37 @@ import TypingEffect from "./TypingEffect.astro";
   </div>
 
   {/* User Input Area */}
-  <div style={{ display: "flex", marginBottom: "16px" }}>
-    <input
-      type="text"
-      id="user-input"
-      placeholder="Écrivez votre message..."
-      style={{
-        flex: 1,
-        padding: "8px 12px",
-        marginRight: "8px",
-        borderRadius: "4px",
-        border: "1px solid #ddd",
-      }}
-    />
-    <button
-      id="send-button"
-      disabled
-      style={{
-        backgroundColor: "#ff5522",
-        color: "white",
-        border: "none",
-        padding: "8px 16px",
-        borderRadius: "4px",
-        cursor: "pointer",
-      }}
-    >
-      Envoyer
-    </button>
-  </div>
+  <form id="user-input-form">
+    <div style={{ display: "flex", marginBottom: "16px" }}>
+      <input
+        type="text"
+        id="user-input"
+        placeholder="Écrivez votre message..."
+        required
+        style={{
+          flex: 1,
+          padding: "8px 12px",
+          marginRight: "8px",
+          borderRadius: "4px",
+          border: "1px solid #ddd",
+        }}
+      />
+      <button
+        id="send-button"
+        type="submit"
+        style={{
+          backgroundColor: "#ff5522",
+          color: "white",
+          border: "none",
+          padding: "8px 16px",
+          borderRadius: "4px",
+          cursor: "pointer",
+        }}
+      >
+        Envoyer
+      </button>
+    </div>
+  </form>
 </div>
 
 <style is:global>
@@ -112,12 +115,16 @@ import TypingEffect from "./TypingEffect.astro";
 </style>
 
 <script>
+  const chatInput = document.getElementById("user-input");
+  const sendButton = document.getElementById("send-button");
+  const form = document.getElementById("user-input-form");
+
   document.addEventListener("DOMContentLoaded", () => {
     // Handle user message submission
     function handleUserMessage() {
       const userInput = document.getElementById("user-input");
       const messagesContainer = document.getElementById("messages-container");
-      const message = userInput.value.trim();
+      const message = userInput?.value.trim();
 
       if (message === "") return;
 
@@ -205,15 +212,50 @@ La cybersécurité est l'affaire de tous. <b>Restez vigilant !</b>
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    // Set up event listeners
-    document
-      .getElementById("send-button")
-      .addEventListener("click", handleUserMessage);
+    async function sendTrackingData(data: any) {
+      const response = await fetch("/api/tracking", {
+        // Ajustez l'URL selon votre structure de projet
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    document.getElementById("user-input").addEventListener("keypress", (e) => {
+      // Analyser la réponse
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          result.error || "Une erreur s'est produite lors du tracking"
+        );
+      }
+    }
+
+    // Set up event listeners
+    chatInput?.addEventListener("click", () => {
+      sendTrackingData({ click_chat_input: true });
+      console.log({ click_chat_input: true });
+    });
+
+    sendButton?.addEventListener("click", () => {
+      sendTrackingData({ click_send_chat_btn: true });
+      console.log({ click_send_chat_btn: true });
+    });
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      handleUserMessage();
+      sendTrackingData({ form_submit: true });
+      console.log({ form_submit: true });
+    });
+
+    chatInput?.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
         handleUserMessage();
+        sendTrackingData({ form_submit: true });
+        console.log({ form_submit: true });
       }
     });
   });
