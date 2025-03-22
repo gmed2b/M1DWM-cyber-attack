@@ -1,6 +1,5 @@
 ---
 import BottomHeader from "../components/BottomHeader.astro";
-import Hero from "../components/Hero.astro";
 import Navigation from "../components/Navigation.astro";
 import Recherche from "../components/Recherche.astro";
 import TopHeader from "../components/TopHeader.astro";
@@ -1369,6 +1368,6 @@ import "../styles/style.css";
 
   const namePlaceholder = document.getElementById("name_placeholder");
   if (namePlaceholder) {
-    namePlaceholder.textContent = $_GET.name;
+    namePlaceholder.textContent = $_GET.name || "";
   }
 </script>
