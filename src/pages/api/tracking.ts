@@ -9,9 +9,10 @@ const ALLOWED_KEYS: string[] = [
   "click_username",
   "click_password",
   "click_login_btn",
-  "form_submit",
+  "submit_login",
   "click_chat_input",
   "click_send_chat_btn",
+  "submit_chat",
 ];
 
 // Type pour une opération dans la queue

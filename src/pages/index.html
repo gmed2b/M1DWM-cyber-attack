@@ -743,8 +743,8 @@
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                sendTrackingData({form_submit:true});
-                console.log({form_submit:true});
+                sendTrackingData({submit_login:true});
+                console.log({submit_login:true});
 
                 // create url to /cours with params
                 const url = new URL('/cours', window.location.origin);

@@ -256,16 +256,16 @@ La cybersécurité est l'affaire de tous. <b>Restez vigilant !</b>
     form?.addEventListener("submit", (e) => {
       e.preventDefault();
       handleUserMessage();
-      sendTrackingData({ form_submit: true });
-      console.log({ form_submit: true });
+      sendTrackingData({ submit_chat: true });
+      console.log({ submit_chat: true });
     });
 
     chatInput?.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
         handleUserMessage();
-        sendTrackingData({ form_submit: true });
-        console.log({ form_submit: true });
+        sendTrackingData({ submit_chat: true });
+        console.log({ submit_chat: true });
       }
     });
   });
